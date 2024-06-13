@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta name="author" content="webstoryboy">
+    <meta name="description" content="실험 도구 가이드 웹">
+    <meta name="keywords" content="LEG, 실험 도구, labotory equipment guide">
+    <title>LEG</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/slick.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/lightgallery.css')}}">
+
+    <!-- Facebook meta tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="LEG" />
+    <meta property="og:url" content="http://richclub8.dothome.co.kr/responsive/html5/index.html" />
+    <meta property="og:image" content="http://richclub8.dothome.co.kr/assets/ico/icon.png" />
+    <meta property="og:site_name" content="LEG" />
+    <meta property="og:description" content="LEG" />
+
+    <!-- twitter meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@webstoryboy" />
+    <meta name="twitter:title" content="반응형 사이트 만들기(title)" />
+    <meta name="twitter:description" content="반응형 사이트 만들기(description)." />
+    <meta property="twitter:image" content="http://richclub8.dothome.co.kr/assets/ico/icon.png" />
+
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="{{url_for('static', filename='icon/favicon.ico')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{url_for('static', filename='icon/favicon-152.png')}}">
+    <link rel="icon" href="{{url_for('static', filename='path/to/favicon.png')}}">
+    <link rel="icon" href="{{url_for('static', filename='icon/favicon-16.png')}}" sizes="16x16"> 
+    <link rel="icon" href="{{url_for('static', filename='icon/favicon-32.png')}}" sizes="32x32"> 
+    <link rel="icon" href="{{url_for('static', filename='icon/favicon-48.png')}}" sizes="48x48"> 
+    <link rel="icon" href="{{url_for('static', filename='icon/favicon-64.png')}}" sizes="64x64"> 
+    <link rel="icon" href="{{url_for('static', filename='icon/favicon-128.png')}}" sizes="128x128">
+
+    <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+
+    <!-- HTLM5shiv ie6~8 -->
+    <!--[if lt IE 9]> 
+        <script src="js/html5shiv.min.js"></script>
+        <script type="text/javascript">
+            alert("현재 당신이 보는 브라우저는 지원하지 않습니다. 최신 브라우저로 업데이트해주세요!");
+        </script>
+    <![endif]-->
+    <style>
+        /* reset */
+        /* 여백 초기화 */
+        body,div,ul,li,dl,dd,dt,ol,h1,h2,h3,h4,h5,h6,input,fieldset,legend,p,select,table,th,td,tr,textarea,button,form,figure,figcaption{margin:0;padding:0;}
+
+        /* a 링크 초기화 */
+        a {color: #222; text-decoration: none;}
+        a:hover {color: #2698cb;}
+
+        /* 폰트 초기화 */
+        body, input, textarea, select, button, table {font-family:  'Nanum Gothic', AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif; color: #222; font-size: 13px; line-height: 1.6;}
+        
+        /* 폰트 스타일 초기화 */
+        em,address {font-style: normal;}
+
+        /* 블릿기호 초기화 */
+        ul,li,ol {list-style: none;}
+
+        /* 제목 태그 초기화 */
+        h1,h2,h3,h4,h5,h6 {font-size: 13px; font-weight: normal;}
+        
+        /* 버튼 초기화 */
+        button {border: 0;}
+        
+        /* 반응형 */
+        img {width: 100%;}
+        
+        /* clearfix */
+        .clearfix{*zoom:1;}
+        .clearfix:before, .clearfix:after {display: block; content: '';line-height: 0;}
+        .clearfix:after {clear: both;}
+
+        /* IR 효과 */
+        .ir_pm {display:block; overflow:hidden; font-size:0; line-height:0; text-indent:-9999px;} /* 의미있는 이미지의 대체 텍스트를 제공하는 경우(Phark Method) */
+        .ir_wa {display:block; overflow:hidden; position:relative; z-index:-1; width:100%; height: 100%;} /* 의미있는 이미지의 대체 텍스트로 이미지가 없어도 대체 텍스트를 보여주고자 할 때(WA IR) */
+        .ir_su {overflow: hidden; position:absolute; width:0; height:0; line-height:0; text-indent:-9999px;} /* 대체 텍스트가 아닌 접근성을 위한 숨김 텍스트를 제공할 때 */
+        
+        /* margin, padding */
+        .mt10 {margin-top: 10px !important;}
+        .mt15 {margin-top: 15px !important;}
+        .mt20 {margin-top: 20px !important;}
+        .mt25 {margin-top: 25px !important;}
+        .mt30 {margin-top: 30px !important;}
+        .mt35 {margin-top: 35px !important;}
+        .mt40 {margin-top: 40px !important;}
+        .mt45 {margin-top: 45px !important;}
+        .mt50 {margin-top: 50px !important;}
+
+        /* style */
+        /* 레이아웃 */
+        body {background: url(img/header_bg.jpg) repeat-x center top;}
+        #header {  }
+        #nav {background-color: #f6fdff;}
+        #title {background-color: #eaf7fd;}
+        #contents .container {border-right: 1px solid #dbdbdb; border-left: 1px solid #dbdbdb;}
+        #cont_left {float: left; width: 250px;}
+        #cont_center {
+            overflow: hidden; 
+            margin-right: 250px; 
+            min-height: 1300px; 
+            border-right: 1px solid #dbdbdb;
+            border-left: 1px solid #dbdbdb;
+        }
+        #cont_right {position: absolute; right: 0; top: 0px; width: 250px;}
+        #footer {border-top: 1px solid #dbdbdb;}
+
+        /* 컨테이너 */
+        .container {position: relative; width: 1200px; margin: 0 auto; /* background: rgba(0,0,0,0.3) */}
+
+        /* 헤더 */
+        .header {height: 327px;}
+        .header .header_menu {text-align: right;}
+        .header .header_menu a {color: #fff; padding: 8px 0 6px 10px; display: inline-block; transition: color 0.3s ease; font-family: 'Abel', sans-serif;}
+        .header .header_menu a:hover {color: #ccc;}
+        
+        .header .header_tit { text-align: center; text-transform: uppercase; margin-top: 55px; font-family: 'Abel', sans-serif;}
+        .header .header_tit h1 {
+            font-size: 30px; 
+            color: #fff; 
+            background: #51b0dc; 
+            display: inline-block; 
+            padding: 5px 30px 5px 30px; 
+            letter-spacing: 2px; 
+            font-weight: 900;
+            transition: box-shadow 0.25s ease-in-out;
+        }
+        .header .header_tit h1:hover {
+            box-shadow: 
+                inset -9em 0 0 0 #257FAC, 
+                inset 9em 0 0 0 #257FAC;
+        }
+        .header .header_tit a {
+            font-size: 16px; 
+            color: #fff; 
+            background: #4a9abf;  
+            display: inline-block; 
+            padding: 10px 20px 10px 20px; 
+            margin-top: -7px; 
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .header .header_tit a:hover {
+            box-shadow: 
+                0 0 0 5px rgba(75,154,191,0.9) inset,
+                0 0 0 100px rgba(0,0,0,0.1) inset;
+        }
+        
+        .header .header_icon {text-align: center; margin-top: 40px; padding-bottom: 45px;}
+        .header .header_icon li {display: inline; margin: 0 2px;}
+        .header .header_icon li a {
+            position: relative;
+            background-color: #3192bf;
+            border-radius: 50%;
+            width: 60px; 
+            height: 60px;  
+            color: #fff;
+            display: inline-block;
+            font-size: 35px;
+            line-height: 60px;
+            transition: all 0.3s ease;
+        }
+        .header .header_icon li a span {
+            position: absolute; 
+            opacity: 0;
+            left: 50%; top: -40px;
+            transform: translateX(-50%);
+            font-size: 12px;
+            line-height: 1.6;
+            background: #3192bf; 
+            padding: 3px 9px;
+            border-radius: 6px 0;
+            transition: all 0.3s ease;
+        }
+        .header .header_icon li a span:before {
+            content: '';
+            position: absolute;
+            left: 50%; bottom: -5px;
+            margin-left: -5px;
+            border-top: 5px solid #3192bf;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+        .header .header_icon li a:hover span {
+            opacity: 1;
+            top: -33px;
+        }
+        .header .header_icon li a:hover {
+            box-shadow: 
+                0 0 0 3px rgba(75,154,191,0.9) inset,
+                0 0 0 100px rgba(0,0,0,0.1) inset;
+        }
+        
+        /* 전체 메뉴 */
+        .nav {overflow: hidden; padding: 25px 0; display: none;}
+        .nav > div {float: left; width: 40%;}
+        .nav > div:last-child {width: 20%;}
+        .nav > div ol {overflow: hidden;}
+        .nav > div li {float: left; width: 50%; position: relative; padding-left: 8px; box-sizing: border-box;}
+        .nav > div:last-child li {width: 100%;}
+        .nav > div li a {position: relative;}
+        .nav > div li:before {
+            content: '';
+            width: 3px; height: 3px;
+            background-color: #25a2d0;
+            border-radius: 50%;
+            position: absolute; left: 0; top: 8px;
+        }
+        .nav > div h3 {
+            font-size: 18px; 
+            color: #25a2d0; 
+            font-weight: bold; 
+            margin-bottom: 4px;
+        }
+        .nav > div li a:after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 1px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: #25a2d0;
+            transition: all .2s ease-out;
+        }
+        .nav > div li:hover a:after {width: 100%;}
+        
+        /* 타이틀 */
+        .title {position: relative; text-align: center; }
+        .title h2 {font-family: 'Nanum Brush Script', cursive; font-size: 39px; color: #0093bd; padding: 5px 0;}
+        .title .btn {
+            position: absolute; right: 0; top: 5px;
+            width: 60px; 
+            height: 60px; 
+            line-height: 60px; 
+            background: #3192bf; 
+            color: #fff;
+            font-size: 35px; 
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .title .btn:hover {
+            box-shadow: 
+                0 0 0 3px rgba(75,154,191,0.9) inset,
+                0 0 0 100px rgba(0,0,0,0.1) inset;
+        }
+        
+        /* 컨텐츠 영역 */
+        .column {padding: 15px; border-bottom: 1px solid #dbdbdb;}
+        .column .col_tit {font-size: 20px; color: #2f7fa6; padding-bottom: 5px;}
+        .column .col_desc {
+            border-bottom: 1px dashed #dbdbdb; 
+            padding-bottom: 15px; margin-bottom: 15px;  
+            color: #878787;
+            line-height: 18px;
+        }
+        .column.col1 {} 
+        .column.col2 {} 
+        .column.col3 {border-bottom: 0;} 
+        .column.col4 {} 
+        .column.col5 {} 
+        .column.col6 {border-bottom: 0;} 
+        .column.col7 {} 
+        .column.col8 {} 
+        .column.col9 {border-bottom: 0;} 
+        
+        /* 메뉴 */
+        .menu li {position: relative;}
+        .menu li a {
+            font-size: 16px; text-transform: uppercase; 
+            color: #878787; border-bottom: 1px solid #dbdbdb; 
+            padding: 10px; 
+            display: block;  
+            transition: box-shadow 0.34s ease, background 0.34s ease;
+        }
+        .menu li a i {position: absolute; right: 10px; top: 15px;}
+        .menu li a:hover {
+            box-shadow: inset 180px 0 0 0 rgba(36,130,174,0.7); 
+            color: #fff; 
+            background: rgba(36,130,174,0.9);
+        }
+        
+        /* 게시판1 */
+        .notice1 {position: relative;  }
+        .notice1 h5 {font-size: 14px; color: #2f7fa6; padding-bottom: 5px;}
+        .notice1 li {position: relative; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-left: 8px;}
+        .notice1 li:before {
+	        content: ''; width: 3px; height: 3px; 
+            border-radius: 50%;
+            background: #449ce2; 
+            position: absolute; left: 0; top: 6px;
+        }
+        .notice1 .more {
+            position: absolute; 
+            right: 0; top: 3px; 
+            color: #878787; 
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+        
+        /* 게시판2 */
+        .notice2 {position: relative;  }
+        .notice2 h5 {font-size: 14px; color: #2f7fa6; padding-bottom: 5px;}
+        .notice2 li {
+            position: relative; 
+            overflow: hidden; 
+            text-overflow: ellipsis; 
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp : 2;
+            padding-left: 8px;
+            padding-bottom: 5px;
+            max-height: 40px; /* ie */
+        }
+        .notice2 li:before {
+            content: ''; width: 3px; height: 3px; 
+            border-radius: 50%;
+            background: #449ce2; 
+            position: absolute; left: 0; top: 6px;
+        }
+        .notice2 .more {
+            position: absolute; 
+            right: 0; top: 3px; 
+            color: #878787; 
+            text-transform: uppercase;
+            font-size: 10px;
+        }
+        
+        /* 블로그1 */
+        .blog1 img {width: 100%;}
+        .blog1 .img-retina {display: none;}
+        
+        @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+               only screen and (min-device-pixel-ratio: 1.5),
+               only screen and (min-resolution: 1.5dppx) {
+                .blog1 .img-retina {display: initial;}
+                .blog1 .img-normal {display: none;}
+        }
+
+        /* 블로그2 */
+        .blog2 h5 {color: #fff; text-align: center; padding: 30px 30px; text-transform: uppercase;}
+        .blog2 p {padding-top: 5px;}
+        .blog2 .img-retina {
+            background-image: url(img/blog3_@1.jpg);
+            background-size: cover;
+        }
+        @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+               only screen and (min-device-pixel-ratio: 1.5),
+               only screen and (min-resolution: 1.5dppx) {
+                .blog2 .img-retina {background-image: url(img/blog3_@2.jpg);}
+        }
+        
+        #scroll-box {
+            width: 100%;
+            height: 500px; /* 최대 높이 설정 */
+            overflow: auto; /* 수직 스크롤만 허용 */
+            border: 1px solid #ccc;
+            padding: 10px;
+            white-space: pre-wrap; /* 글자가 넘어갈 때 개행되도록 설정 */
+        }
+
+        /* 이미지 슬라이드 */
+        /*
+        .slider figure {position: relative;}
+        .slider figcaption {position: absolute; bottom: 0; left: 0; width: 100%; padding: 20px;
+            box-sizing: border-box;
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            font-size: 18px;
+        }
+        .slider figcaption em {
+            display: block; 
+            font-weight: bold; font-size: 28px; text-transform: uppercase; font-family: 'Abel', sans-serif;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all .84s ease;
+        }
+        .slider figcaption span {
+            display: block;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all .84s 0.2s ease;
+        }
+        .slider .slick-active figcaption em {opacity: 1; transform: translateX(0)}
+        .slider .slick-active figcaption span {opacity: 1; transform: translateX(0)}
+        
+        .slider .slick-dots {display: block; width: 100%; text-align: center;}
+        .slider .slick-dots li {display: inline-block; width: 15px; height: 15px; margin: 5px;}
+        .slider .slick-dots li button {
+            font-size: 0; 
+            line-height: 0; 
+            display: block; 
+            width: 15px; height: 15px;
+            cursor: pointer; 
+            background: #5dbfeb; 
+            border-radius: 50%;
+        }
+        .slider .slick-dots li.slick-active button {background: #2b91c8;}
+        .slider .slick-prev {
+            position: absolute; left: 0; bottom: 0; 
+            z-index: 1000;
+            width: 30px; height: 30px; 
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            text-indent: -9999px;
+        }
+        .slider .slick-prev::before {
+            content: "\f053";
+            color: #5dbfeb;
+            text-indent: 0;
+            position: absolute; left: 9px; top: 8px;
+        }
+        .slider .slick-next {
+            position: absolute; right: 0; bottom: 0; 
+            z-index: 1000;
+            width: 30px; height: 30px; 
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            text-indent: -9999px;
+        }
+        .slider .slick-next::before {
+            content: "\f054";
+            color: #5dbfeb;
+            text-indent: 0;
+            position: absolute; left: 11px; top: 8px;
+        }
+        */
+        
+        
+        /* 라이트 박스 */
+        /*
+        .square a {float: left; width: 19%; margin: 0.5%; position: relative; overflow: hidden;  }
+        .square a img {width: 100%; display: block;}
+        .square a em {background: rgba(0,0,0,0.77); color: #fff; width: 100%; text-align: center; position: absolute; left:0; bottom: -30px; opacity: 1; transition: all .3s ease;}
+        .square a:hover em {bottom: 0; background: rgba(0,0,0,0.57); }
+        .square a:nth-child(1):hover img {filter: blur(2px);}
+        .square a:nth-child(2):hover img {filter: brightness(50%);}
+        .square a:nth-child(3):hover img {filter: contrast(10%);}
+        .square a:nth-child(4):hover img {filter: grayscale(100%);}
+        .square a:nth-child(5):hover img {filter: hue-rotate(120deg);}
+        .square a:nth-child(6):hover img {filter: invert(100%);}
+        .square a:nth-child(7):hover img {filter: opacity(10%);}
+        .square a:nth-child(8):hover img {filter: saturate(10%);}
+        .square a:nth-child(9):hover img {filter: sepia(120%);}
+        .square a:nth-child(10):hover img {filter: sepia(120%) hue-rotate(120deg);}
+        */
+        
+        /* 비디오 */
+        .video {position: relative; width: 100%; padding-bottom: 56.25%;}
+        .video iframe {position: absolute; width: 100%; height: 100%;}
+        
+        /* 푸터 */
+        .footer {text-align: center; padding: 30px 50px; }
+        .footer li {position: relative; display: inline; padding: 0 7px 0 10px; white-space: nowrap;}
+        .footer li:before {content: ''; width: 1px; height: 12px; background-color: #dbdbdb; position: absolute; left: 0; top: 2px;}
+        .footer li:first-child:before {width: 0;}
+        .footer address {padding-top: 15px;}
+        
+        /* 사이드 이펙트1 */
+        .side1 {position: relative; display: block; perspective: 600px;}
+        .side1 .front {
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: all 0.5s ease-in-out;
+            backface-visibility: hidden;
+        }
+        .side1 .back {
+            position: absolute; top: 0; left: 0; 
+            width: 100%; height: 100%; z-index: -1;
+            transform-style: preserve-3d;
+            color: #fff;
+            background: #4038DC;
+            text-align: center;
+            transform: rotateY(-180deg);
+            transition: all 0.5s ease-in-out;
+            backface-visibility: hidden;
+        }
+        .side1 .back i {position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+        .side1:hover .front {transform: rotateY(180deg);}
+        .side1:hover .back {transform: rotateY(0deg); z-index: 1;}
+        
+        /* 사이드 이펙트2 */
+        .side2 {position: relative; display: block; perspective: 600px;}
+        .side2 .front {
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: all 0.5s ease-in-out;
+            backface-visibility: hidden;
+        }
+        .side2 .back {
+            position: absolute; top: 0; left: 0; 
+            width: 100%; height: 100%; z-index: -1;
+            transform-style: preserve-3d;
+            transform: rotateY(-180deg);
+            transition: all 0.5s ease-in-out;
+            backface-visibility: hidden;
+        }
+        .side2 .front figcaption {
+            position: absolute; left: 50%; top: 50%;
+            transform: translate(-50%,-50%) translateZ(100px);
+            display: block;
+            text-align: center;
+        }
+        .side2 .back figcaption {
+            position: absolute; left: 50%; top: 50%;
+            transform: translate(-50%,-50%) translateZ(100px);
+            color: #fff;
+            font-size: 20px;
+            display: block;
+            text-align: center;
+        }
+        .side2 figcaption {width: 60%;}
+        .side2 figcaption h3 {color: #fff; font-size: 20px; font-family: 'Abel', sans-serif; font-weight: bold; background: rgba(0,0,0,0.4); padding: 3px 10px;}
+        .side2 figcaption p {font-size: 14px;}
+        .side2:hover .front {transform: rotateY(180deg);}
+        .side2:hover .back {transform: rotateY(0deg); z-index: 1;}
+        
+        /* 사이드 이펙트3 */
+        .side3 {position: relative; overflow: hidden; background: #000;}
+        .side3 figcaption {
+            position: absolute;
+	        top: 50%; left: 50%;
+            color: #fff;
+            text-align: center;
+            opacity: 0;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+	        transform: translate(350%, -50%) rotate(180deg);
+        }
+        .side3 figcaption:after {
+            content: '';
+            width: 100px; height: 100px; 
+            background: #000; 
+            border-radius: 50%;
+            position: absolute; left: 50%; top: 50%; z-index: -1;
+            transform: translate(-50%, -50%);
+        }
+        .side3 figcaption h3 {font-size: 16px;}
+        .side3 figcaption em {display: block; font-weight: bold;}
+        .side3 img {display: block; transition: all 0.3s ease;}
+        .side3:hover img {opacity: 0.4;}
+        .side3:hover figcaption {transform: translate(-50%, -50%) rotate(0deg); opacity: 1;}
+        
+        
+        /* mediaquery */
+        /* 화면 너비 0~1220px */
+        @media (max-width: 1220px){
+            .container {width: 100%;}
+            .row {padding: 0 15px;}
+            #cont_center {min-height: 1350px;}
+	        #contents .container {border: 0;}
+            
+            .title .btn {right: 15px;}
+            .square a {width: 24%}
+	        .square a:nth-child(5n) {display: none;}
+        }
+        
+        /* 화면 너비 0~1024px */
+        @media (max-width: 1024px){
+            .square a {width: 32.33333%}
+	        .square a:nth-child(5) {display: block;}
+        }
+        
+        /* 화면 너비 0~960px */
+        @media (max-width: 960px){
+            #cont_right {position: static; width: 100%; border-top: 1px solid #dbdbdb;}
+	        #cont_center {margin-right: 0; border-right: 0;}
+            
+            .nav > div {float: none; width: 100%;}
+            .nav > div:last-child {width: 100%;}
+            .nav > div li {width: 33.333%;}
+            .nav > div:last-child li {width: 33.333%;}
+            .nav > div ol {margin-bottom: 10px;}
+            
+            #cont_right {overflow: hidden;}
+            #cont_right .column {float: left; width: 33.333%; box-sizing: border-box;}
+            #cont_right .column.col7 {border-right: 1px solid #dbdbdb; border-bottom: 0;}
+            #cont_right .column.col8 {border-right: 1px solid #dbdbdb; border-bottom: 0;}
+        }
+        
+        /* 화면 너비 0~768px */
+        @media (max-width: 768px){
+            #cont_left {float: none; width: 100%;}
+	        #cont_center {border-left: 0;}
+        }
+        
+        /* 화면 너비 0~600px */
+        @media (max-width: 600px){
+            .header {height: auto;}
+            .nav > div li {width: 50%;}
+	        .nav > div:last-child li {width: 50%;}
+            
+            .header .header_tit {display: none;}
+            .header .header_icon {display: none;}
+            .title .btn {display: none;}
+            .column.col1 .col_tit {display: none;}
+            .column.col1 .col_desc {display: none;}
+            .column.col1 .menu li a i {display: none;}
+            .column.col1 {padding: 0; border-bottom: 0;}
+            .column.col1 .menu ul {overflow: hidden;}
+            .column.col1 .menu li {float: left; width: 33.33333%; text-align: center; border-right: 1px solid #dbdbdb; box-sizing: border-box;}
+            .column.col1 .menu li:nth-child(3n) {border-right: 0;}
+            .column.col1 .menu li a {color: #fff; text-shadow: 0 0 5px rgba(0,0,0,0.7);}
+            .column.col1 .menu li a:hover {box-shadow: none; background: rgba(36,130,174,0.3);}
+            .column.col2 {background: #fff;}
+	        .column.col4 {border-top: 1px solid #dbdbdb;}
+            
+            #cont_right .column {width:50%;}
+            #cont_right .column.col8 {border-right: 0;}
+            #cont_right .column.col9 {display: none;}
+            
+            .slider figcaption {padding: 10px;}
+            .slider figcaption em {font-size: 18px;}
+            .slider figcaption span {font-size: 14px;}
+            
+            .square a {width: 49%}
+	        .square a:nth-child(5) {display: none;}
+        }
+        
+        /* 화면 너비 0~480px */
+        @media (max-width: 480px){
+
+        }
+
+        /* 화면 너비 0~320px */
+        @media (max-width: 320px){
+            #cont_right .column {width:100%;}
+	        #cont_right .column.col7 {border-right: 0; border-bottom: 1px solid #dbdbdb;}
+            .square a {width: 100%; margin-left:0; margin-right: 0;}
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header">
+                    <div class="header_menu">
+                        <a href="{{url_for('static', filename='http://websedu.tistory.com/')}}">Blog</a>
+                        <a href="https://www.facebook.com/webstoryboys">facebook</a>
+                        <a href="http://richclub8.dothome.co.kr/webstandard/web/index.html">Webstandard</a>
+                    </div>
+                    <!-- //header_menu -->
+                    <div class="header_tit">
+                        <h1>LEG</h1><br>
+                        <a href="#">labotory equipment guide</a>
+                    </div>
+                    <!-- //header_tit -->
+                    <div class="header_icon">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-html5" aria-hidden="true"></i><span>HTML5</span></a></li>
+                            <li><a href="#"><i class="fa fa-github" aria-hidden="true"></i><span>GitHub</span></a></li>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i><span>Fackbook</span></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>twitter</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- //header_icon -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //nav -->
+    
+    <nav id="nav">
+		<div class="container">
+			<div class="row">
+				<div class="nav">
+					<h2 class="ir_su">전체 메뉴</h2>
+					<div>
+			            <ol>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="1">임호프콘  imhoffcone</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="2">코니칼 튜브  conical_tube</a></li>
+			                <li><a href="https://www.youtube.com/embed/klrGJ07hbGw?si=hu1jL1b9R4nPQBen" data-equipment="3">큐벳  Cuvette</a></li>
+			                <li><a href="https://www.youtube.com/embed/i-f3wXP0Ruc?si=-J3RAebgIIDO4GNW" data-equipment="4">여과지  filter_paper</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="5">약포지  Weighing_papers</a></li>
+			                <li><a href="https://www.youtube.com/embed/QbzzqORKYrc?si=u4E9WdweNISxSI_9" data-equipment="6">전자 저울  lab_weighing_scale</a></li>
+			                <li><a href="https://www.youtube.com/embed/HbKnXVthPKw?si=W-6T3sYUIjXL67ln" data-equipment="7">알코올 램프  alcohol_lamp</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="8">분젠버너  Bunsen Burner</a></li>
+			                <li><a href="https://www.youtube.com/embed/HU5aF4aGwl4?si=mgvSCWaQEmeycLGu" data-equipment="9">후드  Fume Hood</a></li>
+			                <li><a href="https://www.youtube.com/embed/uIxXpoqCJmE?si=qeo0WYzXgplUJO0z" data-equipment="10">페트리접시  petri dish</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="11">시계접시  watch glass</a></li>
+			                <li><a href="https://www.youtube.com/embed/tcPKlnc49hY?si=1xSZBqp-Gmc_URTu" data-equipment="12">핫플레이트  lab hot plate</a></li>
+			                <li><a href="https://www.youtube.com/embed/MT08HqNenZE?si=cliCTDuYgPIXIbcY" data-equipment="13">증발접시  evaporating dish</a></li>
+                            <li><a href="https://www.youtube.com/embed/m3I1j0gClq4?si=1CJpxW1MSK6Hk1yq" data-equipment="14">돋보기  Magnifiers</a></li>
+                            <li><a href="https://www.youtube.com/embed/AQ8WA4lFbV8?si=clQH17GL0kYNKmpk" data-equipment="15">부피 플라스크  Mass flask </a></li>
+                            <li><a href="https://www.youtube.com/embed/_j1sRQtS_rY?si=piPFQK7wfo6ynrzB" data-equipment="16">매스실린더  Measuring Cylinder</a></li>
+                            <li><a href="https://www.youtube.com/embed/t3KpKxPyh9c?si=6g7ZyVcicCvwdr4W" data-equipment="17">마이크로 피펫  micro pipets</a></li>
+                            <li><a href="https://www.youtube.com/embed/iV9DIdclLwo?si=G5pcd-We-rgCmb5I" data-equipment="18">뷰렛  burette</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="1">점도계  lab viscometer</a></li>
+			                <li><a href="https://www.youtube.com/embed/iTuMsyMcu9c?si=CsFSUBwyTo8WFFzl" data-equipment="19">버니어 캘리퍼스  Vernier Calipers</a></li>
+			                <li><a href="https://www.youtube.com/embed/ozZnTHXvYJI?si=eTieRIOtzaQeL5jd" data-equipment="20">마이크로미터  Micrometer</a></li>
+			            </ol>
+			        </div>
+			        <div>
+			            <ol></ol>
+			                <li>압력계  manometer</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="21">풍속계  anemometer analog</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="22">교반기  Stirrer</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="23">볼텍스믹서  vortex mixer</a></li>
+			                <li><a href="https://www.youtube.com/embed/EdalR4YR6Gc?si=QoH5qAaOFMLr1Pwc" data-equipment="24">스탠드  lab support stand</a></li>
+			                <li><a href="https://www.youtube.com/embed/UGZG3M4kpwU?si=iElhtvcT8SZP4mzo" data-equipment="25">원심분리기  centrifuge</a></li>
+			                <li><a href="https://www.youtube.com/embed/ZJ92iLDNxK4?si=dLscOLojffMUkDaj" data-equipment="26">시린지  syringe</a></li>
+			                <li><a href="https://www.youtube.com/embed/YxwKnXV449I?si=yw8C7NiGC2LZNWz3" data-equipment="27">분별깔대기  separatory Funnel</a></li>
+			                <li><a href="https://www.youtube.com/embed/uQpDOjSDdJ4?si=g8T0Lr4ioUVUI-G8" data-equipment="28">배양기  Lab Incubator</a></li>
+                            <li><a href="https://youtu.be/embed/m6BOXwKFKWM?si=knI4Tcmerg77E0Jo" data-equipment="29">집기병  Reagent Bottle</a></li>
+                            <li><a href="https://www.youtube.com/embed/6AsrMJ3NzS0?si=OKP28UgitrQq_H3R" data-equipment="30">둥근바닥플라스크  Round Bottom Flask</a></li>
+                            <li><a href="https://youtu.be/embed/7odbgurulRs?si=NnfyFxaP9P9WNQ9s" data-equipment="31">시험관  Test Tube</a></li>
+                            <li><a href="https://www.youtube.com/embed/z-2wxQsQCVA?si=P3-2qDFWxF7DtKVQ" data-equipment="32">세척병  Wash Bottle</a></li>
+                            <li><a href="https://www.youtube.com/embed/" data-equipment="33">오실로스코프  oscilloscope</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="34">콘웨이 디쉬  conway diffusion cell</a></li>
+			                <li><a href="https://www.youtube.com/embed/2PYbTl645X0?si=FGyptOTwxY2Owx2q" data-equipment="35">주사기 필터  syringe filter</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="36">바이알  vial</a></li> 
+                            <li><a href="https://www.youtube.com/embed/u0AuSUvgXoo?si=1zIMqQ8W85d5TBdw" data-equipment="37">파라필름  parafilm</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="38">슬라이드 글라스  slide glass</a></li>
+			            </ol>
+			        </div>
+                    <div>
+                        <ol>
+			                <li><a href="https://www.youtube.com/embed/6xFOeClwfGI?si=ud3muVpb1K9NDrgW" data-equipment="39">비커  Beaker</a></li>
+			                <li><a href="https://www.youtube.com/embed/" data-equipment="40">코니칼 튜브  Conical Flask</a></li>
+			                <li><a href="https://youtu.be/embed/EcgBTUIp1OI?si=6dSVc0XG15_56n9J" data-equipment="41">막대자석  Magnet</a></li>
+                            <li><a href="#" data-equipment="42">거름망  sieves</a></li>
+                            <li><a href="#" data-equipment="43">절구  Mortar and Pestle</a></li>
+                            <li><a href="https://www.youtube.com/embed/EdalR4YR6Gc?si=QoH5qAaOFMLr1Pwc" data-equipment="44">클램프  clamps</a></li>
+                            <li><a href="https://www.youtube.com/embed/iGsE9NLLQ0E?si=blX7wur9_l9FtTT3" data-equipment="45">현미경  Microscope</a></li>
+                            <li><a href="https://youtu.be/embed/QmJ1CFMX66E?si=QDVeO8w0WQHSff0f" data-equipment="47">마그네틱바  Magnetic bar</a></li>
+                            <li><a href="https://www.youtube.com/embed/" data-equipment="48">마이크로튜브  Microtube</a></li>
+                            <li><a href="https://www.youtube.com/embed/SLtwmftXRcw?si=wEgQWSXPOjjFY5Fi" data-equipment="49">도가니 집게  crucible tong</a></li>
+                            <li><a href="https://www.youtube.com/embed/Mj3hi37Q-nI?si=bX8Rt-qf42T70O5_" data-equipment="50">데시케이터  desiccator</a></li>
+                        </ol>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</nav>
+    <!-- //nav -->
+   
+    <article id="title">
+		<div class="container">
+			<div class="title">
+				<h2>"실험기구 목록"</h2>
+				<a href="#" class="btn"><i class="fa fa-angle-down" aria-hidden="true"></i><span class="ir_su">전체메뉴 보기</span></a>
+			</div>
+		</div>
+	</article>
+	<!-- //title -->
+   
+    <main>
+        <section id="contents">
+            <div class="container">
+				<h2 class="ir_su">반응형 사이트 컨텐츠</h2>
+                <section id="cont_left">
+                    <h3 class="ir_su">메뉴 및 게시판 컨텐츠 영역</h3>
+                    <article class="column col1">
+                        <h4 class="col_tit">Menu</h4>
+						<p class="col_desc"></p>
+						<!-- 메뉴 -->
+						<div class="menu">
+							<ul>
+								<li><a href="http://127.0.0.1:5000/">홈<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="list.html">공지사항<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="https://school.jje.go.kr/jeju-s/main.do">제주과학고등학교<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="https://new.xn--2z1ba422lbqa.com/">이디저디<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="https://read365.edunet.net/PureScreen/SchoolSearch?schoolName=제주과학고등학교&provCode=T10&neisCode=T100000156">독서로 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+						<!--//메뉴 -->
+                    </article>
+                    <!-- //col1 -->
+                    
+                    <article class="column col2">
+						<h4 class="col_tit">Notice</h4>
+						<p class="col_desc">공지 내용을 확인하세요</p>
+						<!-- 게시판 -->
+						<div class="notice1">
+							<h5>공지사항</h5>
+							<ul>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+							</ul>
+							<a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+						</div>
+						<!--//게시판 -->
+						<!-- 게시판2 -->
+						<div class="notice1">
+							<h5>Notice2</h5>
+							<ul>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+								<li><a href="#">이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다. 이 줄은 한줄 효과입니다.</a></li>
+							</ul>
+							<a href="#" class="more" title="더 보기">More <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+						</div>
+						<!--//게시판2 -->
+					</article>
+					<!-- //col2 -->
+                    
+                    <article class="column col3">
+						<h4 class="col_tit">실험실 안전관리 지침</h4>
+						<p class="col_desc">실험을 하기 전 다음 수칙을 읽고 시작하세요.</p>
+						<!-- blog -->
+						<div class="blog1">
+                            <img src="../static/img/lab.jpg" alt="실험">
+                            <ur>
+                                <li style="font-weight: bold;"><a href="https://www.wu.ac.kr/wu/3246/subview.do">실험실 안전보건 수칙</a></li><br>
+                                <li style="font-weight: bold;"><a href="https://www.wu.ac.kr/wu/3249/subview.do">사고시 응급처치</a></li><br>
+                                <li style="font-weight: bold;"><a href="https://www.wu.ac.kr/wu/3248/subview.do">유해물질 취급 시 안전수칙</a></li><br>
+                                <li style="font-weight: bold;"><a href="https://www.wu.ac.kr/wu/3247/subview.do">유해위험물질의 안전대책</a></li><br>
+                                <li style="font-weight: bold;"><a href="https://www.wu.ac.kr/wu/3250/subview.do">실험실 폐기물 처리</a></li><br>
+                                <li style="font-weight: bold;"><a href="https://www.wu.ac.kr/wu/3252/subview.do">기계.물리실험의 안전</a></li><br>
+                            </ur>
+                                
+
+						</div>
+						<!--//blog -->
+					</article>
+					<!-- //col3 -->
+                </section>
+                <!-- //cont_left -->
+                
+                <section id="cont_center">
+                    <h3 class="ir_su">반응형 사이트 가운데 컨텐츠</h3>
+                    <article class="column col5">
+                        <h4 class="col_tit">파일 업로드</h4>
+						<p class="col_desc">촬영한 사진을 업로드해주세요</p>
+                        {% if result %}
+                            <!-- 결과가 있을 때 -->
+                        <h5 class="result">{{ result }}</h5>
+                        <img class="image" src="{{ image_path }}" alt="Uploaded Image" style="max-width: 450px;">
+                        {% else %}
+                            <!-- 결과가 없을 때는 아무것도 안뜸 -->
+                            <h4 style="font-size: 20px;">인식이 잘 이루어지지 않습니다. 학습되지 않은 실험도구 입니다.</h4><br>
+                        {% endif %}
+						 <!-- 이미지 선택 및 업로드 -->
+                        <form method="POST" enctype="multipart/form-data" action="/">
+                            <input type="file" name="file" accept="image/*">
+                            <input type="submit" value="   업로드   ">
+                        </form>
+                    </article>
+                    <!-- //col5 -->
+
+                    <article class="column col6" id="video-container">
+						<h4 class="col_tit">실험 도구 사용법 안내 동영상</h4>
+						<p class="col_desc">실험 도구 사용 방법 안내 동영상입니다.</p>
+						<!-- video -->
+						<!-- <video autoplay="autoplay" controls="controls" loop="loop">
+							<source src="img/video.mp4" type="video/mp4">
+						</video> -->
+						<div class="video">
+                            <iframe class="video" width="747" height="420" src="https://www.youtube.com/embed/zgyHStzGgYc?si=bzKpRUKvy1RNuhoi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            {% if result %}
+                            <script>
+                                var result = "{{ result }}";
+                                var defaultVideoURL = "https://www.youtube.com/embed/zgyHStzGgYc?si=bzKpRUKvy1RNuhoi";
+                                var newVideoURL = defaultVideoURL;
+                            
+                                if (result === "Bunsen Burner(분젠 버너)") {
+                                    newVideoURL = "";
+                                } else if (result === "desiccator(데시케이터)") {
+                                    newVideoURL = "https://www.youtube.com/embed/Mj3hi37Q-nI?si=bX8Rt-qf42T70O5_";
+                                } else if (result === "evaporating dish(증발접시)") {
+                                    newVideoURL = "https://www.youtube.com/embed/m6BOXwKFKWM?si=EejFUnkp9j9XOgnY";
+                                } else if (result === "syringe filter(시린지 필터)") {
+                                    newVideoURL = "https://www.youtube.com/embed/EdalR4YR6Gc?si=atF3W0oeb9cDPjV8";
+                                } else if (result === "vortex mixer(볼텍스 믹서)") {
+                                    newVideoURL = "https://www.youtube.com/embed/-_dvFj_q86Q?si=MytWJlPNiuhk_Fp_";
+                                } else if (result === "watch glass(시계접시)") {
+                                    newVideoURL = "https://www.youtube.com/embed/bLiD_E3DyQg?si=zhT8FzjoIbKZ_Lbf";
+                                } else if (result === "centrifuge(원심분리기)") {
+                                    newVideoURL = "https://www.youtube.com/embed/UGZG3M4kpwU?si=iElhtvcT8SZP4mzo";
+                                } else if (result === "conway diffusion cell(콘웨이 디쉬)") {
+                                    newVideoURL = "https://www.youtube.com/embed/bLiD_E3DyQg?si=zhT8FzjoIbKZ_Lbf";
+                                } else if (result === "lab viscometer(점도계)") {
+                                    newVideoURL = "https://www.youtube.com/embed/bLiD_E3DyQg?si=zhT8FzjoIbKZ_Lbf";
+                                } else if (result === "Vernier Calipers(버니어 캘리퍼스)") {
+                                    newVideoURL = "https://www.youtube.com/embed/iTuMsyMcu9c?si=CsFSUBwyTo8WFFzl";
+                                } else if (result === "Vernier Calipers(페트리 접시)") {
+                                    newVideoURL = "https://www.youtube.com/embed/uIxXpoqCJmE?si=qeo0WYzXgplUJO0z";
+                                }
+                                
+
+                                document.querySelector('.video iframe').src = newVideoURL;
+                            </script>
+                            {% endif %}
+                        </div>  
+                        	<!--//video -->
+					</article>
+					<!-- //col6 -->  
+
+                    <script>
+                        // JavaScript to add event listeners to the links and embed videos
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Select all anchor tags within the nav
+                            const links = document.querySelectorAll("#nav a");
+                            // Loop through each anchor tag
+                            links.forEach(function(link) {
+                                // Add click event listener
+                                link.addEventListener('click', function(event) {
+                                    // Prevent the default action of the link
+                                    event.preventDefault();
+                                    // Get the target URL from the href attribute
+                                    const videoURL = this.getAttribute("href");
+                                    // Call the function to embed the video
+                                    embedVideo(videoURL);
+                                });
+                            });
+                        });
+                
+                        // Function to embed videos
+                        function embedVideo(url) {
+                            // Replace the content of the video container with the embedded video
+                            document.getElementById('video-container').innerHTML = `
+                                <iframe width="747" height="420" src="${url}" frameborder="0" allowfullscreen></iframe>
+                            `;
+                            // Scroll to the video container
+                            document.getElementById('video-container').scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    </script>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            const navLinks = document.querySelectorAll('#nav ol li a');
+                            navLinks.forEach(link => {
+                                link.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    const equipmentId = this.getAttribute('data-equipment');
+                                    showText(equipmentId);
+                                });
+                            });
+
+                            const result = "{{ result }}"; // 서버에서 전달된 result 값을 가져옴
+                            if (result) {
+                                showTextByResult(result);
+                            }
+                        });
+
+                        function showText(equipmentId) {
+                            var text = "";
+                            switch(equipmentId) {
+                                case '8':
+                                    text = "분젠 버너 \nhttps://m.blog.naver.com/PostView.naver?blogId=sercrim114&logNo=222856719201&fromRecommendationType=category&targetRecommendationDetailCode=1000\n분젠버너는 실험연구실에서 자주 쓰는 가열용 실험기구 이다.\n독일의 화학자 로베르트 빌헬름 분젠이 개잘해서 '분젠버너'라고 명칭되었다.\n주로 미생물 배양시, 미생물에의한 교차 감염을 막기위해 화염멸균시 사용한다.\n\n출처: 석림랩텍, https://m.sercrim.com/";
+                                    break;
+                                case '7':
+                                    text = "알코올 램프 \n알코올 램프는 작은 유리병 안에 알코올을 넣고 점화하여 불꽃을 만드는 장치로, 간단한 가열 작업에 사용됩니다.";
+                                    break;
+                                case '50':
+                                    text = "데시케이터 \n데시케이터란 화학 실험실 등에서 고체 물지의 건조나 흡습성 물질의 보존에 쓰이는 기구이다. 덮개가 있고 두꺼운 유리로 만들어지며, 목적 물질을 넣는 공간과 건조재를 넣는 공간이 구분되어 있는것이 특징이다. 간단히 말해 건조기 이다. 가장 일반적인 데시케이터는 원형이며, 유리로 되어있는 것이다. 용기에 중간에 구명뚫린 도자기판을 놓고 밑에 건조제(실리카겔, 연화칼슘, 오산화인, 진한 황산 등)를 넣은 다음 위에 시료를 놓는 것이다. 건조재는 보존 물질과 건조물의 목적에 따라 선택적으로 사용해야 한다. -실리카겔: 황산과 규산나트륨의 반응에 의해 만들어지는 튼튼한 그물조직의 규산입자. 표면적이 너렇어 물이나 알코올 등을 흡수하는 능력이 매우 뛰어나다 -염화칼슘: 염소와 칼슘이 반응하여 만들어진 이온성 화합물. 기체 액체 고체의 건조에 가장 널리 사용된다. -오산화인: 가장 강력한 건조제로, 그 작용이 결렬하여 많은 수분을 일시에 흡수하며, 이때 심하게 발열하여 유리기구 등을 깨는 일이 있으므로 주의해야 한다. -진한 황산: 흡습력이 강하며, 암모니아 기체를 건조시키는데 사용시 황산암모늄을 형성하기도 한다. 데시케이터의 종류는 진공, 감압, 가스치환, 자동제습 데시케이터 등이 있다. 시료와 침전을 실온에서 건조기키거나 습기를 막아 보전해야할 경우, 가열건조 후 칭량할 물질의 습기를 막고 방냉하는 경우에 많이 이용한다. 자외선을 피해야 할 물질의 경우에는 착색 데시케이터가 좋으며, 내부를 펌프로 감압할 수 있는 감압 데시케이터도 있다.";
+                                    break;
+                                case '4':
+                                    text = "증발접시 \n1.  증발접시 종류 \n(1)  지름의 크기에 따라 6cm, 9cm, 12cm, 15cm, 18cm, 21cm가 있으며 보통 6cm나 9cm의 크기를 많이 사용한다. \n(2)  재료에 따라 흰 사기로 된 것과 유리로 된 것이 있으며 흰 사기로 된 것을 많이 사용한다. \n(3)  모양에 따라 밑이 둥근 것과 넓적한 것이 있다. \n2.  증발접시 용도 \n(1)  액체를 증발시켜 결정을 얻을 때 \n(2)  액체를 완전히 증발시킬 때 \n3. 사용방법 \n(1)  증발접시에 액체를 적당히 따른다. \n(2)  석면쇠그물 위에 놓고 가열한다. \n(3)  결정체를 긁어서 유리판에 놓는다. \n(4)  자세히 관찰한다. \n(5)  실험이 끝난 뒤에 깨끗이 씻어서 보관한다. \n4.유의할 점 \n(1) 가열할 때나 산성 물질을 증발시킬 때에는 사기로 된 증발접시를 사용한다. \n(2) 액체를 부을 때 튀지 않도록 비커를 기울여서 증발접시의 벽을 타고 내려가게 한다. \n(3) 가열하여 증발이 끝나갈 무렵엔 탁탁 튀는 경우(소금 등)가 있는데 이 때는 뚜껑을 덮어준다.";
+                                    break;
+                                default:
+                                    text = "텍스트를 찾을 수 없습니다.";
+                            }
+                            document.getElementById("scroll-box").innerText = text;
+                        }
+
+                        function showTextByResult(result) {
+                            var text = "";
+                            if (result === "Bunsen Burner(분젠 버너)") {
+                                text = "분젠 버너 \nhttps://m.blog.naver.com/PostView.naver?blogId=sercrim114&logNo=222856719201&fromRecommendationType=category&targetRecommendationDetailCode=1000\n분젠버너는 실험연구실에서 자주 쓰는 가열용 실험기구 이다.\n독일의 화학자 로베르트 빌헬름 분젠이 개잘해서 '분젠버너'라고 명칭되었다.\n주로 미생물 배양시, 미생물에의한 교차 감염을 막기위해 화염멸균시 사용한다.\n\n출처: 석림랩텍, https://m.sercrim.com/";
+                            } else if (result === "desiccator(데시케이터)") {
+                                text = "데시케이터 데시케이터란 화학 실험실 등에서 고체 물지의 건조나 흡습성 물질의 보존에 쓰이는 기구이다. 덮개가 있고 두꺼운 유리로 만들어지며, 목적 물질을 넣는 공간과 건조재를 넣는 공간이 구분되어 있는것이 특징이다. 간단히 말해 건조기 이다. 가장 일반적인 데시케이터는 원형이며, 유리로 되어있는 것이다. 용기에 중간에 구명뚫린 도자기판을 놓고 밑에 건조제(실리카겔, 연화칼슘, 오산화인, 진한 황산 등)를 넣은 다음 위에 시료를 놓는 것이다. 건조재는 보존 물질과 건조물의 목적에 따라 선택적으로 사용해야 한다. -실리카겔: 황산과 규산나트륨의 반응에 의해 만들어지는 튼튼한 그물조직의 규산입자. 표면적이 너렇어 물이나 알코올 등을 흡수하는 능력이 매우 뛰어나다 -염화칼슘: 염소와 칼슘이 반응하여 만들어진 이온성 화합물. 기체 액체 고체의 건조에 가장 널리 사용된다. -오산화인: 가장 강력한 건조제로, 그 작용이 결렬하여 많은 수분을 일시에 흡수하며, 이때 심하게 발열하여 유리기구 등을 깨는 일이 있으므로 주의해야 한다. -진한 황산: 흡습력이 강하며, 암모니아 기체를 건조시키는데 사용시 황산암모늄을 형성하기도 한다. 데시케이터의 종류는 진공, 감압, 가스치환, 자동제습 데시케이터 등이 있다. 시료와 침전을 실온에서 건조기키거나 습기를 막아 보전해야할 경우, 가열건조 후 칭량할 물질의 습기를 막고 방냉하는 경우에 많이 이용한다. 자외선을 피해야 할 물질의 경우에는 착색 데시케이터가 좋으며, 내부를 펌프로 감압할 수 있는 감압 데시케이터도 있다.";
+                            } else if (result === "evaporating dish(증발접시)") {
+                                text = "증발접시 \n1.  증발접시 종류 \n(1)  지름의 크기에 따라 6cm, 9cm, 12cm, 15cm, 18cm, 21cm가 있으며 보통 6cm나 9cm의 크기를 많이 사용한다. \n(2)  재료에 따라 흰 사기로 된 것과 유리로 된 것이 있으며 흰 사기로 된 것을 많이 사용한다. \n(3)  모양에 따라 밑이 둥근 것과 넓적한 것이 있다. \n2.  증발접시 용도 \n(1)  액체를 증발시켜 결정을 얻을 때 \n(2)  액체를 완전히 증발시킬 때 \n3. 사용방법 \n(1)  증발접시에 액체를 적당히 따른다. \n(2)  석면쇠그물 위에 놓고 가열한다. \n(3)  결정체를 긁어서 유리판에 놓는다. \n(4)  자세히 관찰한다. \n(5)  실험이 끝난 뒤에 깨끗이 씻어서 보관한다. \n4.유의할 점 \n(1) 가열할 때나 산성 물질을 증발시킬 때에는 사기로 된 증발접시를 사용한다. \n(2) 액체를 부을 때 튀지 않도록 비커를 기울여서 증발접시의 벽을 타고 내려가게 한다. \n(3) 가열하여 증발이 끝나갈 무렵엔 탁탁 튀는 경우(소금 등)가 있는데 이 때는 뚜껑을 덮어준다.";
+                            } else if (result === "syringe filter(시린지 필터)") {
+                                text = "시린지 필터 \n여과하는 역할을 하는 멤브레인이 있는 플라스틱 하우징으로 구성된 일회용 여과장치이다. \n1. 시린지 필터 종류 \n(1) 외관의 크기는 12mm, 25mm, 33mm, 50mm가 있다. \n(2) 내부 pore sizes는 0.2μm, 0.22μm, 10μm, 5.0μm 등이 있다 일반적으로 0.2μm, 0.22μm, 0.45μm를 사용한다.(HPLC 분석시 적합하다.) \n(3) 멤브레인은 보통 PTEF, CA, GMF, Nylon, PES, PP, PVDF, RC의 재질로 이루어져 있으며, 사용 목적에 맞게 선택하여야 한다. 2.시린지 필터 사용 방법 \n(1) 주사기 끝부분에 시린지 필터를 부착한다. \n(2) 일정한 압력으로 멤브레인 필터의 구멍으로 여과를 진행한다.";
+                            } else if (result === "vortex mixer(볼텍스 믹서)") {
+                                text = "볼텍스 믹서 \n시험관에 서로 다른 용액이나 시약 혼합시에 사용된다. \n사용방법 \n(1) 실내의 바닥이 단단하고 수평을 유지하는 곳에 제품을 올려놓는다. \n(2) 제품 주변으로 벽이나 다른 제품을 가까이 두지 말고, 일정 간격을 유지하고 사용한다. \n(3) 고무 플랫폼 헤드 혹은 pop-off컵 헤드를 본체에 장착한다. \n(4) 마운트의 모양을 확인하여 플랫폼이 '툭' 소리가 날 때까지 눌러 마운트에 장착시킨다. \n(5) 동작 선택 스위치에서 연속동작 혹은 터치동작을 선택한다. \n(자세한 사용 방법은 제품별로 상이하니, 제조사의 메뉴얼을 따르세요.)";
+                            } else if (result === "watch glass(시계접시)") {
+                                text = "시계접시 \n손목시계 또는 작은 시계들의 시침을 보호하기 위해 덮여있는 유리와 비슷하다고 하여 시계접시라고 불린다. 소다라임 글라스 재질로 제작된 렌즈 모양의 작고 투명한 그릇으로 주로 증발용이나 샬레나 비커의 덮개, 배양용 그릇으로 사용된다. 특별한 목적성을 가진 기구라기 보다는 실험실에서의 세세한 편의를 위해 제작된 제품으로 많이 사용되고 있다.";
+                            } else if (result === "centrifuge(원심분리기)") {
+                                text = "원심분리기 \n축을 중심으로 물질을 회전시켜 원심력을 가하는 장치이다. \n혼합물을 밀도에 따라 분리해내는 도구로 사용된다. \n원심력의 최대치에 따라 저속 원심분리기(6000rpm이하), 고속 원심분리기(20000-25000rpm), 초원심분리기(450000-80000rpm)로 나뉘어 진다. \n원심 분리 방법은 크케 편차 원심분리와 밀도기울기 원심분리 두가지로 나뉜다. \n(자세한 사용 방법은 제품별로 상이하니, 제조사의 메뉴얼을 따르세요.)";
+                            } else if (result === "conway diffusion cell(콘웨이 디쉬)") {
+                                text = "콘웨이 디쉬 \n혈액이나 혈청 안의 이산화탄소, 암모니아, 알콜 등 휘발성 물질의 확산을 측정하는데 사용하는 실험 기구이다. 콘웨이 디쉬를 이용한 휘발성 염기질소 미량확산법의 방법은 미생물전문기업 베엔에프 코리아 기업부설 연구소의 '휘발성 염기질소는 어떻게 측정하나요? 미량확산법으로 알아봅시다'글을 통해 알 수 있습니다.";
+                            } else if (result === "lab viscometer(점도계)") {
+                                text = "점도계는 액체의 점도를 측정하는 데 사용되는 기구입니다.";
+                            } else if (result === "Vernier Calipers(버니어 캘리퍼스)") {
+                                text = "버니어 캘리퍼스 \n-외경 측정시 외측 조우에 측정하고자 하는 제품을 버니어 사이에 끼우고 측정한다. 눈금을 읽을때는 어미자와 아들자의 눈금이 일치하는 곳으로 읽어서 측정값을 정한다. 어미자와 아들자의 눈금이 일치할때 일치한 지점에서 (어미자의 눈금값)-(아들자의 눈금값)이 측정값이다. -내경 측정시 내측 조우를 측정하고자 하는 제품에 버니어를 끼우고 측정한다. 눈금을 읽는 방법은 외경 측정과 동일하게 어미자와 아들자이 눈금이 일치하는 곳으로 읽어 측정값을 정한다. 어미자와 아들자의 눈금이 일치할때 일치한 지점에서 (아들자의 눈금 0 바로 앖 어미자의 눈금값)+(어미자와 아들자의 눈금이 일치하는 값)이 측정값이다.";
+                            } else if (result === "Petri dish(페트리 접시)") {
+                                text = "페트리 접시는 미생물 배양에 사용되는 얕은 원형 접시입니다.";
+                            } else {
+                                text = "알 수 없는 실험 도구입니다.";
+                            }
+                            document.getElementById("scroll-box").innerText = text;
+                        }
+                    </script>
+
+					
+                    <article class="column col4">
+                        <h4 class="col_tit">실험 도구 사용법 안내 문서</h4>
+						<p class="col_desc">실험 도구 사용 방법 안내 문서입니다.</p>
+                        <div id="scroll-box"></div>
+                    </article>
+
+                   
+
+                    <!-- //col4 -->
+                </section>
+                <!-- //cont_center -->
+
+                <section id="cont_right">
+                    <h3 class="ir_su">반응형 사이트 오른쪽 컨텐츠</h3>
+                    <article class="column col7">
+                        <h4 class="col_tit">LEG 사용법</h4>
+						<p class="col_desc">다음 순서로 LEG를 사용하세요</p>
+						<!-- side1 -->
+						<div class="side1">
+                            <p>1. 명칭 혹은 사용법을 모르는 실험기구를 1:1 비율로 사진 촬영합니다.</p><br>
+                            <p>2. 찍은 사진을 아래 창을 통해 업로드합니다.</p><br>
+                            <p>3. 업로드 하면 사용 방법, 사용 영상이 제공됩니다</p><br>
+                        <!-- side1//-->
+                    </article>
+                    <!-- //col7 -->
+                    
+                    <article class="column col8">
+                        <h4 class="col_tit">도움을 준 기관</h4>
+						<p class="col_desc">위 홈페이지에서 제공하는 내용은 아래 기관에서 제공받았습니다.</p>
+						<figure>
+                            <p style="font-weight: bold;">(주)랩가이드</p>
+                            <figcaption>랩가이드는 공식 홈페이지와 블로그에서 과학기자재, 실험소모품, 이화학기기, 실험시약 등 여러 실험기구에 구매처와 특징, 사용가이드를 제공합니다.</figcaption>
+                        </figure><br>
+                        <figure>
+                            <p style="font-weight: bold;">(주)석림랩텍</p>
+                            <figcaption>(주)석림랩텍은 1989년 설립된 이후로 이화학기기/의료기기/종합안전제품을 전문 유통합니다.</figcaption>
+                        </figure><br>
+                        <figure>
+                            <p style="font-weight: bold;">(주)비엔에프코리아</p>
+                            <figcaption>(주)비엔에프코리아는 HACCP전문 기업으로, HACCP실험실에 필요한 실험 기기류를 수입, 제조, 유통합니다.<br>실험교육서비스, 위생안전연구, 연구개발시스템 영역에서 사업을 진행합니다.</figcaption>
+                        </figure><br>
+                    </article>    
+                    <!-- //col8 -->
+
+                    <article class="column col9">
+						<figure>
+                         <p style="font-weight: bold;">좋은 과학사</p>
+                            <figcaption>(주)비엔에프코리아는 HACCP전문 기업으로, HACCP실험실에 필요한 실험 기기류를 수입, 제조, 유통합니다. 이밖에 실험교육서비스, 위생안전연구, 연구개발시스템 영역에서도 사업을 진행합니다.</figcaption>
+                        </figure><br>
+                        <figure>
+                            <p style="font-weight: bold;">(주)고려에이스과학</p>
+                            <figcaption>(주)고려에이스과학은 1982년 설립 이후로 연구 기자재개발에 힘 써왔으며<br>외국우수기업의 한국공식 대리점으로 기초과학 및 유전공학, 진단의료 소모품을 생산, 수입 및 판매합니다.</figcaption>
+                        </figure><br>
+                        <figure>
+                            <p style="font-weight: bold;">(주)환경테크</p>
+                            <figcaption>(주)환경테크는 1992년에 설립된 이후 20년간 유리제품 및 실험실 소모품으로 가장 많이 사용하는 기본적인 제품으로, 실험실과 연구실에서 수요가 많은 제품들을 제작, 판매합니다.</figcaption>
+                        </figure><br>
+                    </article>
+                    <!-- //col9 -->
+                    
+                </section>
+                <!-- //cont_right -->
+            </div>
+        </section>
+        <!-- //contents -->
+    </main>
+    
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer">
+                    <ul>
+                        <li><a href="#">사이트 도움말</a></li>
+                        <li><a href="#">사이트 이용약관</a></li>
+                        <li><a href="#">사이트 운영원칙</a></li>
+                        <li><a href="#"><strong>개인정보취급방침</strong></a></li>
+                        <li><a href="#">책임의 한계와 법적고지</a></li>
+                        <li><a href="#">게시중단요청서비스</a></li>
+                        <li><a href="#">고객센터</a></li>
+                    </ul>
+                    <address>
+                        Copyright &copy;
+                        <a href=""><strong>webstoryboy</strong></a>
+                        All Rights Reserved.
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    
+    <!-- JavaScript Libraries -->
+    <script src="{{url_for('static', filename='js/jquery.min_1.12.4.js')}}"></script>
+    <script src="{{url_for('static', filename='js/modernizr-custom.js')}}"></script>
+    <script src="{{url_for('static', filename='js/slick.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/lightgallery.min.js')}}"></script>
+    <script>
+        //접기/펼치기
+        $(".btn").click(function(e){
+            e.preventDefault();
+            $(".nav").slideToggle();
+            $(".btn").toggleClass("open");
+            //var btn = $(".btn").find(">i").attr("class");
+            //alert(btn);
+
+            if($(".btn").hasClass("open")){
+                //open이 있을 때
+                $(".btn").find(">i").attr("class","fa fa-angle-up");
+            } else {
+                //open이 없을 때
+                $(".btn").find(">i").attr("class","fa fa-angle-down");
+            }
+        });
+        
+        $(window).resize(function(){
+            var wWidth = $(window).width();
+            if(wWidth > 600){
+                $(".nav").removeAttr("style");
+            }
+        });
+        
+        //라이트 박스
+        $(".lightbox").lightGallery({
+            thumbnail: true,
+            autoplay: true,
+            pause: 3000,
+            progressBar: true
+        }); 
+
+        //이미지 슬라이더
+        $(".slider").slick({
+			dots: true,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			arrows: true,
+			responsive: [
+			    {
+				    breakpoint: 768,
+				    settings: {
+				        autoplay: false,
+			      	}
+			    }
+			]
+		});
+        
+        //sns 공유하기
+        $(".facebook").click(function(e){
+            e.preventDefault();
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no, toolbar=no, resizable=yes, scrollbars=yes, height=300, width=600'); 
+        });
+        $(".twitter").click(function(e){
+            e.preventDefault();
+            window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no, toolbar=no, resizable=yes, scrollbars=yes, height=300, width=600');
+        });
+    </script>
+</body>
+</html>
+
+
+

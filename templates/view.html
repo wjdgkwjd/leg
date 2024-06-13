@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 보기</title>
+    <link rel="stylesheet" href="../static/css/css.css">
+</head>
+<body onload="loadContent()">
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>공지사항 보기</strong>
+            <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+        </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title" id="view-title">
+                    글 제목이 들어갑니다.
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>번호</dt>
+                        <dd id="view-id">1</dd>
+                    </dl>
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd id="view-author">김이름</dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd id="view-date">2021.1.16</dd>
+                    </dl>
+                    <dl>
+                        <dt>조회</dt>
+                        <dd id="view-views">33</dd>
+                    </dl>
+                </div>
+                <div class="cont" id="view-content">
+                    글 내용이 들어갑니다
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <a href="list.html" class="on">목록</a>
+                <a href="edit.html">수정</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadContent() {
+            const postId = localStorage.getItem('currentPostId');
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const post = posts.find(p => p.id == postId);
+
+            if (post) {
+                document.getElementById('view-title').textContent = post.title;
+                document.getElementById('view-author').textContent = post.author;
+                document.getElementById('view-date').textContent = post.date;
+                document.getElementById('view-id').textContent = post.id;
+                document.getElementById('view-views').textContent = post.views;
+                document.getElementById('view-content').innerHTML = post.content.replace(/\n/g, '<br>');
+
+                post.views += 1;
+                localStorage.setItem('posts', JSON.stringify(posts));
+            } else {
+                alert("해당 게시글을 찾을 수 없습니다.");
+                window.location.href = 'list.html';
+            }
+        }
+    </script>
+</body>
+</html>
